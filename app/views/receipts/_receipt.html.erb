@@ -1,0 +1,9 @@
+<tr>
+  <th scope="row"><%= link_to "##{receipt.id}", receipt %></th>
+  <td><%= receipt.check_in %></td>
+  <td><%= receipt.check_out %></td>
+  <td><%= number_to_currency receipt.into_money, locale: :vi %></td>
+  <td><%= number_to_currency receipt.paid, locale: :vi %></td>
+  <td><%= receipt.payment %></td>
+  <td><%= status_bill(receipt.status) %></td>
+</tr>

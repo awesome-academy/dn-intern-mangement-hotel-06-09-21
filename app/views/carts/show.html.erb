@@ -3,9 +3,18 @@
     <%= t "cart.cart_nil_html", link: link_to(t("other.go_back"), root_path) %>
   </p>
 <% else %>
-  <div class="list-group">
-    <% session[:cart].each do |receipt_detail| %>
-      <%= render "cart_row", receipt_detail: receipt_detail %>
-    <% end %>
+  <div class="row">
+    <div class="list-group col">
+      <% session[:cart].each_with_index do |receipt_detail, index| %>
+        <%= render "cart_row", receipt_detail: receipt_detail, index: index %>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <h3>Tong cong</h3>
+      <h4><%= number_to_currency money_receipts , locale: :vi%></h4>
+      <h5>
+        <%= link_to "Payment", receipts_path, {data: {confirm: t("cart.confirm_delete")}, method: :post, class: "btn-grad"} %>
+      </h5>
+    </div>
   </div>
 <% end %>

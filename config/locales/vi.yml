@@ -66,3 +66,12 @@ vi:
     items_in_cart: "%{quantity} Phòng trong giỏ hàng"
     add_to_cart: "Thêm vào giỏ hàng"
     add_success: "Thêm vào giỏ hàng thành công, kiểm tra giỏ hàng để biết chi tiết"
+    confirm_update: "Bạn có chắc chắn muốn cập nhật không?"
+    update_success: "Cập nhật giỏ hàng thành công"
+    confirm_delete: "Bạn có chắc chắn muốn xóa lượt đặt chỗ này khỏi giỏ hàng của mình không?"
+    delete_success: "Đã xóa thành công phòng khỏi giỏ hàng"
+    update: "Cập nhật"
+    delete: "Xóa bỏ"
+  receipt:
+    booking_successful: "Đặt phòng thành công, chúng tôi sẽ sớm xác nhận thông tin và thông báo cho bạn qua email. Cảm ơn vì đã chọn chúng tôi"
+    booking_fail: "Có điều gì đó xảy ra trong khi đặt chỗ, xin lỗi vì sự bất tiện này"

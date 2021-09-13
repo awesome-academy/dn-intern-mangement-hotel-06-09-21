@@ -66,3 +66,12 @@ en:
     items_in_cart: "%{quantity} Rooms in Cart"
     add_to_cart: "Add to Cart"
     add_success: "Add to cart successfully, check cart for details"
+    confirm_update: "Are you sure you want to update?"
+    update_success: "Cart update successful"
+    confirm_delete: "Are you sure you want to remove this booking from your cart?"
+    delete_success: "Room successfully removed from cart"
+    update: "Update"
+    delete: "Delete"
+  receipt:
+    booking_successful: "Booking is successful, we will soon confirm the information and notify you by email. Thank you for choosing us"
+    booking_fail: "Something happened during the booking, sorry for the inconvenience"

@@ -1,0 +1,44 @@
+<% provide :title, "Receipts" %>
+<div class="row">
+
+<%= content_tag(:h1, "Bill ##{@receipt.id} of #{current_user.job_title} #{current_user.first_name} #{current_user.last_name}", class: "col") %>
+<%= link_to "Print invoice", "your_link_here", :onclick => "window.print();return false;", class: "col-2 btn-grad"%>
+
+</div>
+<div class="row g-3 needs-validation my-3">
+  <div class="col-md-4">
+    <%= content_tag(:strong,  "Email: #{current_user.email}" ) %>
+  </div>  
+  <div class="col-md-4">
+    <%= content_tag(:strong, "Phone: #{current_user.phone}") %>
+  </div>
+  <div class="col-md-4">
+    <%= content_tag(:strong, "Date of Birth: #{current_user.date_of_birth}") %>
+  </div>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Room</th>
+      <th scope="col">From time</th>
+      <th scope="col">End time</th>
+      <th scope="col">People</th>
+      <th scope="col">Into Money</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @receipt_details.each do |item| %>
+      <tr>
+        <th scope="row"><%= link_to "##{item.room_id}", item.room %></th>
+        <td><%= item.from_time.strftime Settings.format_time_view %></td>
+        <td><%= item.end_time.strftime Settings.format_time_view %></td>
+        <td><%= item.amount_of_people %></td>
+        <td><%= number_to_currency item.into_money, locale: :vi %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th colspan="4">Total money</th>
+      <th scope="col"><%= number_to_currency @receipt.into_money, locale: :vi %></th>
+    </tr>
+  </tbody>
+</table>

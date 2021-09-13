@@ -28,4 +28,11 @@ class ApplicationController < ActionController::Base
   def init_cart
     session[:cart] = [] if session[:cart].nil?
   end
+
+  def require_admin
+    if current_user.role == 0
+      flash[:danger] = "Khong du quyen truy cap"
+      redirect_to root_path
+    end
+  end
 end

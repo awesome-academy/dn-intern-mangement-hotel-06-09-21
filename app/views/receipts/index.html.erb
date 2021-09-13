@@ -1,0 +1,18 @@
+<% provide :title, "Booking history" %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Check In</th>
+      <th scope="col">Check Out</th>
+      <th scope="col">Into Money</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Payment</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render @receipts %>
+  </tbody>
+</table>
+

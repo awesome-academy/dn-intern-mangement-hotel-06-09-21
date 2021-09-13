@@ -3,7 +3,7 @@
   <div class="row gx-5">
     <div class="col">
       <% @room.images.each do |image| %> 
-      <%= image_tag image, class: "img-fluid rounded m-3" %> 
+        <%= image_tag image, class: "img-fluid rounded m-3" %> 
       <% end %>
     </div>
     <div class="col mx-5">
@@ -40,7 +40,7 @@
           <div class="input-group my-2">
             <div class="m-2">
               <%= f.label :amount_of_people, class: "my-2" %>
-              <%= f.number_field  :amount_of_people, value: 1,class: "form-control me-2", required: true, min: 1 %>
+              <%= f.number_field  :amount_of_people, value: 1,class: "form-control me-2", required: true, min: 1, max: 20 %>
             </div>
           </div>
           <div class="input-group my-2">
