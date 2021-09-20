@@ -26,6 +26,13 @@ class ApplicationController < ActionController::Base
   end
 
   def init_cart
-    session[:cart] = [] if session[:cart].nil?
+    session[:cart] ||= {}
+  end
+
+  def is_admin?
+    return if current_user.admin?
+
+    flash[:warning] = t "Ban k la admin"
+    redirect_to root_url
   end
 end

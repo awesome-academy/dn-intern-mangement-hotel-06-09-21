@@ -4,8 +4,8 @@
   </p>
 <% else %>
   <div class="list-group">
-    <% session[:cart].each do |receipt_detail| %>
-      <%= render "cart_row", receipt_detail: receipt_detail %>
+    <% session[:cart].each do |cart_row| %>
+      <%= render "cart_row", cart_row: cart_row %>
     <% end %>
   </div>
 <% end %>

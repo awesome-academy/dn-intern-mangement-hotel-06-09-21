@@ -1,41 +1,53 @@
-<% if room receipt_detail["room_id"] %>
+<% if room cart_row[0] %>
   <div class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">
         <%= link_to @room.name, @room %>
       </h5>
+      <%= link_to "", remove_carts_path(room_id: cart_row[0]), {data: {confirm: t("cart.confirm_delete")}, method: :delete, remote: true, class: "btn-close"} %>
     </div>
     <div>
-      <%= form_for login_path, remote: true do |f| %>
+      <%= form_tag change_carts_path do |f| %>
       <div class="row mb-2">
         <div class="col">
-          <%= f.label :from_time, class: "my-2" %>
-          <%= f.datetime_field :from_time, value: parse_time(receipt_detail["from_time"]), class: "form-control", required: true, min: time_current %>
+          <%= label_tag :from_time, nil, class: "my-2" %>
+          <%= datetime_field_tag :from_time, nil, value: parse_time(cart_row[1]["from_time"]), class: "form-control", required: true, min: time_current %>
         </div>
         <div class="col">
-          <%= f.label :end_time, class: "my-2" %>
-          <%= f.datetime_field :end_time,value: parse_time(receipt_detail["end_time"]), class: "form-control", required: true, min: time_current %>    
+          <%= label_tag :end_time, nil, class: "my-2" %>
+          <%= datetime_field_tag :end_time, nil, value: parse_time(cart_row[1]["end_time"]), class: "form-control", required: true, min: time_current %>    
+        </div>
+        <div class="col-2">
+          <%= label_tag :people, nil, class: "my-2" %>
+          <%= number_field_tag  :people, nil, value: cart_row[1]["people"], class: "form-control", required: true, min: 1, max: 20 %>
         </div>
       </div>
-      <%= f.hidden_field :room_id, value: receipt_detail["room_id"] %>
+      <%= hidden_field_tag :room_id, nil, value: cart_row[0] %>
+      <div class="row mb-2">
+        <div class="col">
+          <p class="m-1 my-3">
+            <%= t "cart.rental_period", time: distance_of_time_in_words(cart_row[1]["from_time"], cart_row[1]["end_time"]) %>
+          </p>
+          <ul>
+            <li>
+              <%= t "rooms.hourly_price", price: number_to_currency(@room.hourly_price, locale: :vi) %>
+            </li>
+            <li>
+              <%= t "rooms.day_price", price: number_to_currency(@room.day_price, locale: :vi) %>
+            </li>
+            <li>
+              <%= t "rooms.monthly_price", price: number_to_currency(@room.monthly_price, locale: :vi) %>
+            </li>
+          </ul>
+        </div>
+          <div class="col">
+          <h5 class="m-1 text-secondary">
+            <%= t "cart.into_money", money: number_to_currency(sp_money(cart_row[1]["end_time"],cart_row[1]["from_time"]), locale: :vi) %>
+          </h5>
+        </div>  
+      </div>
+      <%= submit_tag t("cart.update"), data: {confirm: t("cart.confirm_update")}, class: "btn btn-primary my-2 col-2" %> 
     <% end %>
     </div>  
-    <div class="row mb-2">
-      <div class="col">
-        <p class="m-1 my-3">
-          <%= t "cart.rental_period", time: distance_of_time_in_words(receipt_detail["from_time"], receipt_detail["end_time"]) %>
-        </p>
-      </div>
-      <div class="col">
-        <p class="m-1 my-3">
-          <%= t "cart.amount_of_people", people: receipt_detail["amount_of_people"] %>
-        </p>
-      </div>
-        <div class="col">
-        <h5 class="m-1 text-secondary">
-          <%= t "cart.into_money", money: number_to_currency(receipt_detail["into_money"], locale: :vi) %>
-        </h5>
-      </div>
-    </div> 
   </div>
 <% end %>
