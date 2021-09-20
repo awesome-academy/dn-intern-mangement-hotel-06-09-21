@@ -26,6 +26,6 @@ class ApplicationController < ActionController::Base
   end
 
   def init_cart
-    session[:cart] = [] if session[:cart].nil?
+    session[:cart] ||= {}
   end
 end

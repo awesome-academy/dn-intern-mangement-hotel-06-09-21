@@ -8,8 +8,8 @@ module ApplicationHelper
     DateTime.parse(time).strftime(Settings.format_time)
   end
 
-  def time_current
-    Time.current.strftime(Settings.format_time)
+  def time_current hour = 0
+    (Time.current + Settings.hour_1.hour + hour).strftime Settings.format_time
   end
 
   def room room_id
