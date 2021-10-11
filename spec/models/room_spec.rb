@@ -41,18 +41,6 @@ RSpec.describe Room, type: :model do
       expect(Room.latest).to eq ([room_2, room_1])
     end
 
-    it "load room with price greater than or equal to x" do
-      expect(Room.price_greater(room_1.hourly_price)).to eq([room_1, room_2])
-    end
-
-    it "load room with price less than or equal to x" do
-      expect(Room.price_less(room_1.hourly_price)).to eq([room_1, room_2])
-    end
-
-    it "load room with name has keywords" do
-      expect(Room.name_has(room_1.name)).to eq([room_1])
-    end
-
     it "load room with id not in [x]" do
       expect(Room.not_in(room_1.id)).to eq([room_2])
     end

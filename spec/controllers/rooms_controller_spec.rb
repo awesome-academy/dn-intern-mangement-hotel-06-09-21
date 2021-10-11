@@ -34,24 +34,4 @@ RSpec.describe RoomsController, type: :controller do
       it {expect(response).to redirect_to(root_path)}
     end
   end
-
-  describe "GET rooms#search" do
-    context "success when room do exist" do
-      let(:params) {{key: "", from_time: receipt.from_time, 
-                     end_time: receipt.end_time, min: 0, max: nil}}
-      before{get :search, params: params}
-
-      it "assigns @room_ids_busy exist" do
-        expect(assigns(:room_ids_busy).class.to_s).to eq "Receipt::ActiveRecord_Relation"
-      end
-
-      it "assigns @rooms exist" do
-        result = Room.name_has(params[:key])
-                      .price_greater(params[:min])
-                      .price_less(params[:max])
-                      .not_in(assigns(:room_ids_busy))
-        expect(assigns(:rooms)) == result
-      end
-    end
-  end
 end
